@@ -57,21 +57,21 @@ class HelloController {
 	
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/read")
-    String chapterNotRead(@RequestParam("chapter") String chapter) {
-	userChaptersRepository.deleteByChapter(chapter);
-	return "Removed " + chapter;
+    // @RequestMapping(method = RequestMethod.DELETE, value="/read")
+    // String chapterNotRead(@RequestParam("chapter") String chapter) {
+    // 	userChaptersRepository.deleteByChapter(chapter);
+    // 	return "Removed " + chapter;
 	
-    }
+    // }
 
-    @RequestMapping(path="/read")
-    public @ResponseBody Iterable<String> getAllUsers() {
-	// This returns a JSON or XML with the users
+    // @RequestMapping(path="/read")
+    // public @ResponseBody Iterable<String> getAllUsers() {
+    // 	// This returns a JSON or XML with the users
 
-	List<String> rtnval = new ArrayList<String>();
-	for( UserChapters uc :userChaptersRepository.findAll()) {
-	    rtnval.add(uc.getChapter());
-	}
-	return rtnval;
-    }
+    // 	List<String> rtnval = new ArrayList<String>();
+    // 	for( UserChapters uc :userChaptersRepository.findAll()) {
+    // 	    rtnval.add(uc.getChapter());
+    // 	}
+    // 	return rtnval;
+    // }
 }
