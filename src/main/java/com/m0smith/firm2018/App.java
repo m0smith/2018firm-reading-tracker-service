@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,14 +43,19 @@ class HelloController {
 	
     }
     
-    @RequestMapping(method = RequestMethod.PUT, value="/chapter/{chapter}")
-    String chapterRead(@PathVariable String chapter) {
+    @RequestMapping(method = RequestMethod.PUT, value="/read")
+    String chapterRead(@RequestParam("chapter") String chapter) {
 	UserChapters uc = new UserChapters();
 	uc.setChapter(chapter);
 	//uc.setUserInfoId(id);
-	    
 	userChaptersRepository.save(uc);
 	return "Saved " + chapter;
 	
+    }
+
+    @GetMapping(path="/read")
+    public @ResponseBody Iterable<User> getAllUsers() {
+	// This returns a JSON or XML with the users
+	return userChaptersRepository.findAll();
     }
 }
