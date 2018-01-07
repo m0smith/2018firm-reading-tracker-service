@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,8 +54,8 @@ class HelloController {
 	
     }
 
-    @GetMapping(path="/read")
-    public @ResponseBody Iterable<User> getAllUsers() {
+    @RequestMapping(path="/read")
+    public @ResponseBody Iterable<UserChapters> getAllUsers() {
 	// This returns a JSON or XML with the users
 	return userChaptersRepository.findAll();
     }
