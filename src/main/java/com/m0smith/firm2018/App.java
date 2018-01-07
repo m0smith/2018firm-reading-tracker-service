@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.m0smith.firm2018.UserInfo;
 import com.m0smith.firm2018.UserInfoRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
 
@@ -54,9 +57,21 @@ class HelloController {
 	
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value="/read")
+    String chapterNotRead(@RequestParam("chapter") String chapter) {
+	userChaptersRepository.deleteByChapter(chapter);
+	return "Removed " + chapter;
+	
+    }
+
     @RequestMapping(path="/read")
-    public @ResponseBody Iterable<UserChapters> getAllUsers() {
+    public @ResponseBody Iterable<String> getAllUsers() {
 	// This returns a JSON or XML with the users
-	return userChaptersRepository.findAll();
+
+	List<String> rtnval = new ArrayList<String>();
+	for( UserChapters uc :userChaptersRepository.findAll()) {
+	    rtnval.add(uc.getChapter());
+	}
+	return rtnval;
     }
 }
