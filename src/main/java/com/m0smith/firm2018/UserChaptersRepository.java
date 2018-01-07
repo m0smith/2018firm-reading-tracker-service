@@ -1,6 +1,7 @@
 package com.m0smith.firm2018;
 
 import org.springframework.data.repository.CrudRepository;
+import javax.transaction.Transactional;
 
 import com.m0smith.firm2018.UserChapters;
 
@@ -9,6 +10,8 @@ import com.m0smith.firm2018.UserChapters;
 
 public interface UserChaptersRepository extends CrudRepository<UserChapters, Long> {
 
+    @Transactional
+    Long deleteByChapter(String chapter);
 }
 
  

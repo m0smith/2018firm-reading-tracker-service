@@ -30,11 +30,19 @@ $(document).on("click", "input[type='checkbox']", function () {
 	    type: 'PUT',
 	    data: "chapter=" + this.id,
 	    success: function(data) {
-		alert('Load was performed.');
+		alert('PUT was performed.' + data);
+	    }
+	});
+    } else {
+	$.ajax({
+	    url: '/read',
+	    type: 'DELETE',
+	    data: "chapter=" + this.id,
+	    success: function(data) {
+		alert('DELETE was performed.' + data);
 	    }
 	});
     }
-
 
 
 });
