@@ -41,7 +41,7 @@ class HelloController {
 	
     }
     
-    @RequestMapping(method = RequestMethod.POST, value="/chapter/{chapter}")
+    @RequestMapping(method = RequestMethod.PUT, value="/chapter/{chapter}")
     String chapterRead(@PathVariable String chapter) {
 	UserChapters uc = new UserChapters();
 	uc.setChapter(chapter);
