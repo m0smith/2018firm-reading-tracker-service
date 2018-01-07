@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class App extends SpringBootServletInitializer {
 class HelloController {
     @Autowired 
     private UserInfoRepository userInfoRepository;
+    private UserChaptersRepository userChaptersRepository;
     
     @RequestMapping("/hello/{name}")
     String hello(@PathVariable String name) {
@@ -39,14 +41,14 @@ class HelloController {
 	
     }
     
-    @RequestMapping("/user/{id}/{ward}")
-    String hello(@PathVariable String id, @PathVariable String ward) {
-	UserInfo ui = new UserInfo();
-	ui.setWard(ward);
-	ui.setUserInfoId(id);
+    @RequestMapping(method = RequestMethod.POST, value="/chapter/{chapter}")
+    String chapterRead(@PathVariable String chapter) {
+	UserChapters uc = new UserChapters();
+	uc.setChapter(chapter);
+	//uc.setUserInfoId(id);
 	    
-	userInfoRepository.save(ui);
-	return "Saved " + id + " " + ward;
+	userChaptersRepository.save(uc);
+	return "Saved " + chapter;
 	
     }
 }
