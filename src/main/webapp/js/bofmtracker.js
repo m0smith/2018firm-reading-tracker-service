@@ -24,6 +24,19 @@ $(document).on("click", "input[type='checkbox']", function () {
     var p = cboxes/boxes * 100;
     $('#percent').text(p.toFixed(2));
 
+    if(this.checked) {
+	$.ajax({
+	    url: '/read',
+	    type: 'PUT',
+	    data: "chapter=" + this.id,
+	    success: function(data) {
+		alert('Load was performed.');
+	    }
+	});
+    }
+
+
+
 });
 
 $(document).ready(function () {
