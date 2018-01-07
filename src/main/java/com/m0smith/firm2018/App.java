@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.m0smith.firm2018.UserInfo;
+import com.m0smith.firm2018.UserInfoRepository;
 
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
@@ -25,11 +29,24 @@ public class App extends SpringBootServletInitializer {
 
 @RestController
 class HelloController {
-
-	@RequestMapping("/hello/{name}")
-	String hello(@PathVariable String name) {
-
-		return "Hi " + name + " !";
-
-	}
+    @Autowired 
+    private UserInfoRepository userInfoRepository;
+    
+    @RequestMapping("/hello/{name}")
+    String hello(@PathVariable String name) {
+	
+	return "Hi " + name + " !";
+	
+    }
+    
+    @RequestMapping("/user/{id}/{ward}")
+    String hello(@PathVariable String id, @PathVariable String ward) {
+	UserInfo ui = new UserInfo();
+	ui.setWard(ward);
+	ui.setUserInfoId(id);
+	    
+	userInfoRepository.save(ui);
+	return "Saved " + id + " " + ward;
+	
+    }
 }
