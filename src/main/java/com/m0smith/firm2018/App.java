@@ -32,6 +32,7 @@ public class App extends SpringBootServletInitializer {
 class HelloController {
     @Autowired 
     private UserInfoRepository userInfoRepository;
+    @Autowired 
     private UserChaptersRepository userChaptersRepository;
     
     @RequestMapping("/hello/{name}")
