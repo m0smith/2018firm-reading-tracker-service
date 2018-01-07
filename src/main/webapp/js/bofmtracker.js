@@ -13,6 +13,7 @@ $(document).on("click", "input[type='checkbox']", function () {
     var days = daysUntil(2018,7,1);
     var remaining = (boxes - cboxes);
     console.log(this.checked);
+    console.log(this.id);
     console.log(boxes)
     console.log(cboxes)
     
