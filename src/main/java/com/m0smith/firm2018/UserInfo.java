@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class UserInfo {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private String user_info_id;
 
     private String ward;
