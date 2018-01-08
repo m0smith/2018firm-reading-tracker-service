@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.m0smith.firm2018</groupId>
-    <artifactId>reading-service</artifactId>
+    <artifactId>2018FIRM</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
     <name>2018FIRM</name>
