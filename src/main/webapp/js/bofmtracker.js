@@ -30,7 +30,7 @@ $(document).on("click", "input[type='checkbox']", function () {
 	    type: 'PUT',
 	    data: "chapter=" + this.id,
 	    success: function(data) {
-		alert('PUT was performed.' + data);
+		console.log('PUT was performed.' + data);
 	    }
 	});
     } else {
@@ -39,7 +39,7 @@ $(document).on("click", "input[type='checkbox']", function () {
 	    type: 'DELETE',
 	    data: "chapter=" + this.id,
 	    success: function(data) {
-		alert('DELETE was performed.' + data);
+		console.log('DELETE was performed.' + data);
 	    }
 	});
     }
