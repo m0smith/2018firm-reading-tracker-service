@@ -18,6 +18,10 @@ import com.m0smith.firm2018.UserInfoRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
 
@@ -39,6 +43,8 @@ class HelloController {
     private UserInfoRepository userInfoRepository;
     @Autowired 
     private UserChaptersRepository userChaptersRepository;
+
+    private final Logger logger = LogFactory.getLogger(this.getClass());
     
     @RequestMapping("/hello/{name}")
     String hello(@PathVariable String name) {
@@ -59,8 +65,9 @@ class HelloController {
 
     @RequestMapping(method = RequestMethod.DELETE, value="/read/{chapter}")
     void chapterNotRead(@PathVariable("chapter") String chapter) {
+	logger.error("chapterNotRead: " + chapter);
 	Long rtnval = userChaptersRepository.deleteByChapter(chapter);
-	System.out.println("Delete count:" + rtnval);
+	logger.error("Delete count:" + rtnval);
 
 	
     }
