@@ -57,8 +57,8 @@ class HelloController {
 	
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/read")
-    String chapterNotRead(@RequestParam("chapter") String chapter) {
+    @RequestMapping(method = RequestMethod.DELETE, value="/read/{chapter}")
+    String chapterNotRead(@PathVariable("chapter") String chapter) {
 	userChaptersRepository.deleteByChapter(chapter);
 	return "Removed " + chapter;
 	
