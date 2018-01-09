@@ -18,10 +18,11 @@ var readChapters = function() {
     },
         success: function(response){
         	
-        response.forEach(function(data) {
+            response.forEach(function(data) {
         	console.log(data);
         	$("#" + data).prop('checked', true);
-        })  	
+            })
+	    summarize();
       }	
 })
 }
@@ -89,5 +90,4 @@ $(document).ready(function () {
     });
 
     readChapters();
-    summarize();
 });
