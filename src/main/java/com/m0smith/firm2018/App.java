@@ -44,7 +44,7 @@ class HelloController {
     @Autowired 
     private UserChaptersRepository userChaptersRepository;
 
-    private final Logger logger = LogFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     
     @RequestMapping("/hello/{name}")
     String hello(@PathVariable String name) {
