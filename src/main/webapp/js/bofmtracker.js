@@ -58,9 +58,8 @@ $(document).on("click", "input[type='checkbox']", function () {
 	});
     } else {
 	$.ajax({
-	    url: '/read',
+	    url: '/read/' + this.id,
 	    type: 'DELETE',
-	    data: "chapter=" + this.id,
 	    success: function(data) {
 		console.log('DELETE was performed for ' + this.id + '.');
 	    }
