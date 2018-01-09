@@ -6,6 +6,26 @@ function daysUntil(year, month, day) {
   return Math.round(days);
 }
 
+var readChapters = function() {
+    $.ajax({
+        url: "/read",
+        type: "GET",
+        datatype:"JSON",
+        contentType: "application/json",
+      
+         
+        error : function(data){console.log("error:",data)
+    },
+        success: function(response){
+        	
+        response.forEach(function(data) {
+        	console.log(data);
+        	$("#" + data).prop('checked', true);
+        })  	
+      }	
+})
+}
+
 $(document).on("click", "input[type='checkbox']", function () {
 
     var boxes = $('input[type=checkbox]').length;
@@ -65,4 +85,6 @@ $(document).ready(function () {
 	e.preventDefault();
     webAuth.authorize();
     });
+
+    readChapters();
 });
