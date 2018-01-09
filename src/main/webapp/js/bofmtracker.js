@@ -25,10 +25,8 @@ var readChapters = function() {
       }	
 })
 }
-
-$(document).on("click", "input[type='checkbox']", function () {
-
-    var boxes = $('input[type=checkbox]').length;
+var summarize = function() {
+        var boxes = $('input[type=checkbox]').length;
     var cboxes = $('input[type=checkbox]:checked').length;
     var days = daysUntil(2018,7,1);
     var remaining = (boxes - cboxes);
@@ -43,6 +41,10 @@ $(document).on("click", "input[type='checkbox']", function () {
     $('#chapters').text( Math.ceil(remaining / days));
     var p = cboxes/boxes * 100;
     $('#percent').text(p.toFixed(2));
+}
+
+$(document).on("click", "input[type='checkbox']", function () {
+    summarize()
 
     if(this.checked) {
 	$.ajax({
@@ -87,4 +89,5 @@ $(document).ready(function () {
     });
 
     readChapters();
+    summarize();
 });
