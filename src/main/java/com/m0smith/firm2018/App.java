@@ -58,9 +58,10 @@ class HelloController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/read/{chapter}")
-    String chapterNotRead(@PathVariable("chapter") String chapter) {
-	userChaptersRepository.deleteByChapter(chapter);
-	return "Removed " + chapter;
+    void chapterNotRead(@PathVariable("chapter") String chapter) {
+	Long rtnval = userChaptersRepository.deleteByChapter(chapter);
+	System.out.println("Delete count:" + rtnval);
+
 	
     }
 
