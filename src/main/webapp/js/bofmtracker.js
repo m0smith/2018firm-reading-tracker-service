@@ -61,7 +61,7 @@ $(document).on("click", "input[type='checkbox']", function () {
 	    type: 'DELETE',
 	    data: "chapter=" + this.id,
 	    success: function(data) {
-		console.log('DELETE was performed.' + data);
+		console.log('DELETE was performed for ' + this.id + '.');
 	    }
 	});
     }
