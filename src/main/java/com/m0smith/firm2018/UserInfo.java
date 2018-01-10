@@ -11,7 +11,7 @@ public class UserInfo {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer user_info_id;
 
-    private String user_id;
+    private String userId;
 
     private String ward;
 
@@ -35,11 +35,11 @@ public class UserInfo {
     }
 
     public String getUserId() {
-	return user_id;
+	return userId;
     }
     
     public void setUserId(String userId) {
-	this.user_id = userId;
+	this.userId = userId;
     }
 
     public String getUserType() {

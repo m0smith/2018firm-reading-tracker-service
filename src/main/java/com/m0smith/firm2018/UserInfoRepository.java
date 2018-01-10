@@ -8,6 +8,7 @@ import com.m0smith.firm2018.UserInfo;
 // CRUD refers Create, Read, Update, Delete
 
 public interface UserInfoRepository extends CrudRepository<UserInfo, Long> {
+    List<UserInfo> findByUserId(String id);
 
 }
 

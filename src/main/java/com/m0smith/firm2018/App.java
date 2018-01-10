@@ -60,6 +60,11 @@ class HelloController {
 	return "Hi " + name + " !";
 	
     }
+
+    @RequestMapping(method = RequestMethod.GET, value="/reg")
+    Boolean isRegistered(@AuthenticationPrincipal Principal user) {
+	return userInfoRepository.findByUserId(user.getName()).size() > 0 ;
+    }
     
     @RequestMapping(method = RequestMethod.POST, value="/reg")
     String register(@AuthenticationPrincipal Principal user,

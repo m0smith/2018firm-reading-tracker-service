@@ -9,7 +9,7 @@ CREATE TABLE user_info (
 
 CREATE TABLE user_chapters (
        user_chapters_id int NOT NULL AUTO_INCREMENT,
-       user__id VARCHAR(100),
+       user_id VARCHAR(100),
        chapter VARCHAR(20),
        PRIMARY KEY (user_chapters_id)
 );
