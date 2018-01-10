@@ -216,6 +216,17 @@ $(document).ready(function () {
 	return new Date().getTime() < expiresAt;
     }
 
+    function lookForRegistration() {
+	$.ajax({
+	    url: '/reg',
+	    type: 'GET',
+	    data: "chapter=" + this.id,
+	    headers: apiHeaders(true),
+	    success: function(data) {
+		console.log('REG read: ' + data);
+	    }
+	});
+    }
     
     function handleAuthentication() {
 	webAuth.parseHash(function(err, authResult) {
@@ -223,6 +234,7 @@ $(document).ready(function () {
 		window.location.hash = '';
 		getProfile(authResult.accessToken);
 		setSession(authResult);
+		lookForRegistration();
 		loginBtn.css('display', 'none');
 		homeView.css('display', 'inline-block');
 	    } else if (err) {
