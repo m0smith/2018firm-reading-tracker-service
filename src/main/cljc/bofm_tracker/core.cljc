@@ -114,7 +114,7 @@
 (defn nav []
   (tag "nav" {:class "navbar navbar-default"}
        (tag "div" {:class "container-fluid"}
-            (tag "div" {:class "navber-header"}
+            (tag "div" {:class "navbar-header"}
                  (str
                   (tag "a" {:class "navbar-brand"
                             :href "#"}
