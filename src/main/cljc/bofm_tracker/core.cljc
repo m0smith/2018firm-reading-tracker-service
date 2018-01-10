@@ -128,7 +128,11 @@
                   (tag "button" {:id "btn-logout"
                                  :class "btn btn-primary btn-margin"}
                        "Logout")
-                  (tag "p" {:id "login-status" :class "navbar-brand"} ""))))))
+                  (tag "p" {:id "logout-status" :class "navbar-brand"} "Please login.")
+                  (tag "div" {:id "login-status" :class "navbar-brand"}
+                       (str
+                        (tag "img" {:id "user-photo"} nil)
+                        (tag "p" {:id "login-status-text"} ""))))))))
 
 (defn -main []
   (print
