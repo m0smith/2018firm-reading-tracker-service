@@ -73,7 +73,7 @@ $(document).ready(function () {
 	redirectUri: 'http://openshift-jee-sample-2018firm.7e14.starter-us-west-2.openshiftapps.com',
 	audience: 'https://' + '2018firm.auth0.com' + '/userinfo',
 	responseType: 'token id_token',
-	scope: 'openid'
+	scope: 'openid profile'
     });
     
     var loginBtn = $('#btn-login');
