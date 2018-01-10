@@ -106,20 +106,17 @@ $(document).ready(function () {
 
     logoutBtn.click(logout);
 
-    var userProfile;
+    function getProfile(accessToken) {
+	if (!localStorage.getItem['profile']) {
 
-    function getProfile() {
-	if (!userProfile) {
-	    var accessToken = localStorage.getItem('access_token');
-	    
 	    if (!accessToken) {
 		console.log('Access token must exist to fetch profile');
 	    }
 	    
 	    webAuth.client.userInfo(accessToken, function(err, profile) {
 		if (profile) {
-		    userProfile = profile;
 		    console.log(profile);
+		    localStorage.setItem('profile', profile);
 		}
 	    });
 	} else {
@@ -127,7 +124,7 @@ $(document).ready(function () {
 	}
     }
 
-    function setSession(authResult) {
+    function setSession(authResult, profile) {
 	// Set the time that the access token will expire at
 	var expiresAt = JSON.stringify(
 	    authResult.expiresIn * 1000 + new Date().getTime()
@@ -142,6 +139,7 @@ $(document).ready(function () {
 	localStorage.removeItem('access_token');
 	localStorage.removeItem('id_token');
 	localStorage.removeItem('expires_at');
+	localStorage.removeItem('profile');
 	displayButtons();
     }
 
@@ -156,7 +154,7 @@ $(document).ready(function () {
 	webAuth.parseHash(function(err, authResult) {
 	    if (authResult && authResult.accessToken && authResult.idToken) {
 		window.location.hash = '';
-		getProfile();
+		getProfile(authResult.accessToken);
 		setSession(authResult);
 		loginBtn.css('display', 'none');
 		homeView.css('display', 'inline-block');
