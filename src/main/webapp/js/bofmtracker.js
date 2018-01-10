@@ -75,7 +75,7 @@ $(document).ready(function () {
     var webAuth = new auth0.WebAuth({
 	domain: '2018firm.auth0.com',
 	clientID: 'S2peKq6xxBILjv2vu4LPRXR0WywJKm1M',
-	redirectUri: 'http://reading.2018firm.life',
+	redirectUri: 'http://openshift-jee-sample-2018firm.7e14.starter-us-west-2.openshiftapps.com',
 	audience: 'https://' + '2018firm.auth0.com' + '/userinfo',
 	responseType: 'token id_token',
 	scope: 'openid'
