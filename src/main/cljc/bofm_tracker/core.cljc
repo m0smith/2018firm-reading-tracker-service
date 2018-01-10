@@ -131,7 +131,7 @@
                   (tag "p" {:id "logout-status" :class "navbar-brand"} "Please login.")
                   (tag "div" {:id "login-status" :class "navbar-brand"}
                        (str
-                        (tag "img" {:id "user-photo"} nil)
+                        (tag "img" {:id "user-photo" :height "42"} nil)
                         (tag "p" {:id "login-status-text"} ""))))))))
 
 (defn -main []

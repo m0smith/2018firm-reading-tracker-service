@@ -40,7 +40,7 @@ var summarize = function() {
 }
 
 $(document).on("click", "input[type='checkbox']", function () {
-    summarize()
+    summarize();
 
     if(this.checked) {
 	$.ajax({
