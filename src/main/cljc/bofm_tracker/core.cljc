@@ -46,18 +46,8 @@
   ([name] (tag name nil ""))
   ([name  body] (tag name nil body))
   ([name attrs body] (tag-body name attrs body))
-  ([name attrs b1 b2]
-   (str
-    (tag-body name attrs b1)
-    (tag-body name attrs b2)))
-  ([name attrs b1 b2 b3]
-   (str
-    (tag-body name attrs b1)
-    (tag-body name attrs b2)
-    (tag-body name attrs b3))))
-
-(defn chapterxx [b num]
-  (str num))
+  ([name attrs b1 b2] (tag-body name attrs (str b1 b2)))
+  ([name attrs b1 b2 b3] (tag-body name attrs (str b1 b2 b3))))
 
 (defn chapter [b num]
   (let [id (str (:url-id b) "-p" num)]
@@ -123,7 +113,7 @@
 
 
 (defn progress []
-  (tag "div" {:class "container"}
+  (tag "div" {:class "container" :id "summary-view"}
        (tag "h4" nil (str "Target July 1: " (tag "span" {:id "days"} "0") " days remaining"))
        (tag "div" {:class "progress"}
             (tag "div" {:id "personal-progress-bar" :class "progress-bar" 

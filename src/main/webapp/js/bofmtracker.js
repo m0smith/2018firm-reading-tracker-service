@@ -106,6 +106,7 @@ $(document).ready(function () {
     var logoutStatus = $('#logout-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
+    var summaryView = $('#summary-view');
     var userPhoto = $( '#user-photo' );
     
     // buttons and event listeners
@@ -194,6 +195,8 @@ $(document).ready(function () {
 	if (isAuthenticated()) {
 	    loginBtn.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
+	    homeView.css('display', 'inline-block');
+	    summaryView.css('display', 'inline-block');
 	    logoutBtn.css('display', 'inline-block');
 	    loginStatus.css('display', 'inline-block');
 	    logoutStatus.css('display', 'none');
@@ -201,6 +204,7 @@ $(document).ready(function () {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
 	    homeView.css('display', 'none');
+	    summaryView.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    logoutStatus.css('display', 'inline-block');
 	    loginStatus.css('display', 'none');
