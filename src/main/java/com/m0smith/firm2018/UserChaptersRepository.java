@@ -16,7 +16,7 @@ public interface UserChaptersRepository extends CrudRepository<UserChapters, Lon
     Long deleteByChapterAndUserId(String chapter, String id);
 
     @Transactional
-    List<UserChapters> findByUserInfoId(String id);
+    List<UserChapters> findByUserId(String id);
 }
 
  
