@@ -89,6 +89,7 @@ $(document).ready(function () {
     var logoutStatus = $('#logout-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
+    var userPhoto = $( '#user-photo' );
     
     // buttons and event listeners
     var homeViewBtn = $('#btn-home-view');
@@ -119,6 +120,7 @@ $(document).ready(function () {
 		    console.log(profile);
 		    localStorage.setItem('profile', profile);
 		    loginStatus.text(profile.name);
+		    userPhoto.attr('src', profile.picture);
 		}
 	    });
 	} else {
