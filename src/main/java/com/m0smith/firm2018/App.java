@@ -23,6 +23,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.security.Principal;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 @SpringBootApplication
 @PropertySources({
@@ -60,41 +62,43 @@ class HelloController {
     }
     
     @RequestMapping(method = RequestMethod.POST, value="/reg")
-    String register(@RequestParam("ward") String ward,
+    String register(@AuthenticationPrincipal Principal user,
+		    @RequestParam("ward") String ward,
 		    @RequestParam("user_type") String user_type
 		    ) {
 	UserInfo ui = new UserInfo();
 	ui.setWard(ward);
 	ui.setUserType(user_type);
+	ui.setUserId(user.getName());
 	userInfoRepository.save(ui);
 	return "Saved " + user_type;
 	
     }
     @RequestMapping(method = RequestMethod.PUT, value="/read")
-    String chapterRead(@RequestParam("chapter") String chapter) {
+    String chapterRead(@AuthenticationPrincipal Principal user,
+		       @RequestParam("chapter") String chapter) {
 	UserChapters uc = new UserChapters();
 	uc.setChapter(chapter);
-	//uc.setUserInfoId(id);
+	uc.setUserInfoId(user.getName());
 	userChaptersRepository.save(uc);
 	return "Saved " + chapter;
 	
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/read/{chapter}")
-    void chapterNotRead(@PathVariable("chapter") String chapter) {
+    void chapterNotRead(@PathVariable("chapter") String chapter,
+			@AuthenticationPrincipal Principal user) {
 	logger.error("chapterNotRead: " + chapter);
-	Long rtnval = userChaptersRepository.deleteByChapter(chapter);
+	Long rtnval = userChaptersRepository.deleteByChapterAndUserInfoId(chapter, user.getName());
 	logger.error("Delete count:" + rtnval);
 
 	
     }
 
     @RequestMapping(path="/read")
-    public @ResponseBody Iterable<String> getAllUsers() {
-	// This returns a JSON or XML with the users
-
+    public @ResponseBody Iterable<String> getReadChapters(@AuthenticationPrincipal Principal user) {
 	List<String> rtnval = new ArrayList<String>();
-	for( UserChapters uc :userChaptersRepository.findAll()) {
+	for( UserChapters uc :userChaptersRepository.findByUserInfoId(user.getName())) {
 	    rtnval.add(uc.getChapter());
 	}
 	return rtnval;
