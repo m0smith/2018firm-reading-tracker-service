@@ -19,7 +19,9 @@ var readChapters = function() {
         success: function(response){
         	
             response.forEach(function(data) {
-        	$("#" + data).prop('checked', true);
+		var ele = $("#" + data)
+        	ele.prop('checked', true);
+		ele.parent('label').addClass('active');
             })
 	    summarize();
       }	
