@@ -118,7 +118,7 @@ $(document).ready(function () {
 		if (profile) {
 		    console.log(profile);
 		    localStorage.setItem('profile', profile);
-		    loginStatus.text(profile'.name);
+		    loginStatus.text(profile.name);
 		}
 	    });
 	} else {
