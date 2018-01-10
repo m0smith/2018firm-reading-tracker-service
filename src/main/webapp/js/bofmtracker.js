@@ -118,6 +118,7 @@ $(document).ready(function () {
 		if (profile) {
 		    console.log(profile);
 		    localStorage.setItem('profile', profile);
+		    loginStatus.text(profile'.name);
 		}
 	    });
 	} else {
@@ -177,7 +178,6 @@ $(document).ready(function () {
 	    logoutBtn.css('display', 'inline-block');
 	    logoutStatus.css('display', 'inline-block');
 	    loginStatus.css('display', 'none');
-	    loginStatus.text(localStorage.getItem['profile'].name);
 	} else {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
