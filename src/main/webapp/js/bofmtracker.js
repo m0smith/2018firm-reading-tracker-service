@@ -157,6 +157,7 @@ $(document).ready(function () {
     function displayButtons() {
 	if (isAuthenticated()) {
 	    loginBtn.css('display', 'none');
+	    homeViewBtn.css('display', 'none');
 	    logoutBtn.css('display', 'inline-block');
 	    loginStatus.text('You are logged in!');
 	} else {
