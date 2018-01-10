@@ -6,7 +6,7 @@ function daysUntil(year, month, day) {
   return Math.round(days);
 }
 
-var apiHeaders = function() {
+var apiHeaders = function(secured) {
     var accessToken = localStorage.getItem('access_token');
 
     var headers;
@@ -22,7 +22,7 @@ var readChapters = function() {
         type: "GET",
         datatype:"JSON",
         contentType: "application/json",
-	headers: apiHeaders()
+	headers: apiHeaders(true),
          
         error : function(data){ console.log("error:",data) },
         success: function(response){
@@ -70,9 +70,15 @@ var submitRegistration = function(){
 
     $("#registration-view").css('display', 'none');
     console.log($("#registration-form").serialize());
-    $.post("/reg", $("#registration-form").serialize(), function(data){
-	console.log("POST");
-	alert(data);
+    $.ajax({
+	url: '/reg',
+	type: 'POST',
+	contentType : 'application/x-www-form-urlencoded',
+	data: $("#registration-form").serialize(),
+	headers: apiHeaders(true),
+	success: function(data) {
+	    console.log('POST was performed for ' + this + '.');
+	}
     });
 }
 
@@ -102,6 +108,7 @@ $(document).ready(function () {
 		url: '/read',
 		type: 'PUT',
 		data: "chapter=" + this.id,
+		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('PUT was performed.' + data);
 		}
@@ -110,6 +117,7 @@ $(document).ready(function () {
 	    $.ajax({
 		url: '/read/' + this.id,
 		type: 'DELETE',
+		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('DELETE was performed for ' + this.id + '.');
 		}
