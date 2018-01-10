@@ -2,6 +2,8 @@ package com.m0smith.firm2018;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 import com.m0smith.firm2018.UserInfo;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
