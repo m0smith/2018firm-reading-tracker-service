@@ -140,6 +140,7 @@ $(document).ready(function () {
 	webAuth.parseHash(function(err, authResult) {
 	    if (authResult && authResult.accessToken && authResult.idToken) {
 		window.location.hash = '';
+		console.log(authResult);
 		setSession(authResult);
 		loginBtn.css('display', 'none');
 		homeView.css('display', 'inline-block');
