@@ -26,45 +26,61 @@ var readChapters = function() {
 })
 }
 var summarize = function() {
-        var boxes = $('input[type=checkbox]').length;
+    console.log("summarize")
+    var boxes = $('input[type=checkbox]').length;
     var cboxes = $('input[type=checkbox]:checked').length;
     var days = daysUntil(2018,7,1);
     var remaining = (boxes - cboxes);
+    var p = cboxes/boxes * 100;
+    var p_display = p.toFixed(1) + '%'; 
     
     $('#days').text(days);
     $('#read').text(cboxes);
     $('#remaining').text(remaining);
     $('#chapters').text( Math.ceil(remaining / days));
-    var p = cboxes/boxes * 100;
+    
     $('#percent').text(p.toFixed(2));
+    $('#personal-progress-bar span').text(p_display);
+    $('#personal-progress-bar').attr('aria-valuenow', p_display).css('width',p_display);
 }
 
-$(".chapter-cb").on("click", function () {
-    summarize();
-
-    if(this.checked) {
-	$.ajax({
-	    url: '/read',
-	    type: 'PUT',
-	    data: "chapter=" + this.id,
-	    success: function(data) {
-		console.log('PUT was performed.' + data);
-	    }
-	});
-    } else {
-	$.ajax({
-	    url: '/read/' + this.id,
-	    type: 'DELETE',
-	    success: function(data) {
-		console.log('DELETE was performed for ' + this.id + '.');
-	    }
-	});
-    }
 
 
-});
+// $("").on("click", function () {
+//      $('input[type="checkbox"]').bind('change', function (v) {
+
+//     }
+
+
+//      })});
 
 $(document).ready(function () {
+
+    $('.chapter-cb').change( function(ele) {
+	console.log(this.checked);
+	summarize();
+
+	if(this.checked) {
+	    $.ajax({
+		url: '/read',
+		type: 'PUT',
+		data: "chapter=" + this.id,
+		success: function(data) {
+		    console.log('PUT was performed.' + data);
+		}
+	    });
+	} else {
+	    $.ajax({
+		url: '/read/' + this.id,
+		type: 'DELETE',
+		success: function(data) {
+		    console.log('DELETE was performed for ' + this.id + '.');
+		}
+	    });
+	}});
+    
+
+    
     $('#days').text(daysUntil(2018,7,1));
 
     var webAuth = new auth0.WebAuth({
@@ -85,7 +101,8 @@ $(document).ready(function () {
 
     readChapters();
     
-    var loginStatus = $('#login-status-text');
+    var loginStatus = $('#login-status');
+    var loginStatusText = $('#login-status-text');
     var logoutStatus = $('#logout-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
@@ -119,7 +136,7 @@ $(document).ready(function () {
 		if (profile) {
 		    console.log(profile);
 		    localStorage.setItem('profile', profile);
-		    loginStatus.text(profile.name);
+		    loginStatusText.text(profile.name);
 		    userPhoto.attr('src', profile.picture);
 		}
 	    });
@@ -183,7 +200,7 @@ $(document).ready(function () {
 	} else {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
-	    homeView.css('display', 'none');
+	    // homeView.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    logoutStatus.css('display', 'inline-block');
 	    loginStatus.css('display', 'none');

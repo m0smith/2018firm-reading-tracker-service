@@ -35,15 +35,26 @@
           "</" name ">")
      (str "<" name (join-map attrs) ">"))))
 
-(defn tag
-  ([name] (tag name nil ""))
-  ([name  body] (tag name nil body))
-  ([name attrs body]
+(defn tag-body [name attrs body]
    (if body
      (str "<" name (join-map attrs) ">"
           body
           "</" name ">")
-     (str "<" name (join-map attrs) "/>"))))
+     (str "<" name (join-map attrs) "/>")))
+
+(defn tag
+  ([name] (tag name nil ""))
+  ([name  body] (tag name nil body))
+  ([name attrs body] (tag-body name attrs body))
+  ([name attrs b1 b2]
+   (str
+    (tag-body name attrs b1)
+    (tag-body name attrs b2)))
+  ([name attrs b1 b2 b3]
+   (str
+    (tag-body name attrs b1)
+    (tag-body name attrs b2)
+    (tag-body name attrs b3))))
 
 (defn chapterxx [b num]
   (str num))
@@ -59,7 +70,7 @@
   
   
 (defn chapters [b]
-  (tag "div" {:class "btn-group" :data-toggle "buttons"}
+  (tag "div" { :data-toggle "buttons"}
        (apply str (map #(chapter b (inc %)) (range (:chapters b))))))
 
 (defn book [b]
@@ -86,7 +97,6 @@
 (defn summary-content []
   (str
    (tag "h2" "Goal: read Book of Mormon by July 1")
-   (tag "h3" (str "Days remaining: " (tag "span" {:id "days"} "counting..."))) 
    (tag "h3" (str "Chapters per day: " (tag "span" {:id "chapters"} "1"))) 
    (tag "h2" "Progress")
    (tag "h3" (str "Read:" (tag "span" {:id "read"} "0")))
@@ -112,48 +122,58 @@
         (tag "script" {:src "js/bofmtracker.js"} ""))))
 
 
+(defn progress []
+  (tag "div" {:class "container"}
+       (tag "h4" nil (str "Target July 1: " (tag "span" {:id "days"} "0") " days remaining"))
+       (tag "div" {:class "progress"}
+            (tag "div" {:id "personal-progress-bar" :class "progress-bar" 
+                        :role "progressbar" :aria-valuenow "0"
+                        :aria-valuemin "0"
+                        :aria-valuemax "239" :style "width:0%"}
+                 "<span>0%</span>"))))
+
+
 (defn nav []
   (tag "nav" {:class "navbar navbar-default"}
        (tag "div" {:class "container-fluid"}
-            (tag "div" {:class "navbar-header"}
-                 (str
-                  (tag "a" {:class "navbar-brand"
-                            :href "#"}
-                       "2018 FIRM Reading Tracker")
-                  (tag "button" {:id "btn-home-view"
-                                 :class "btn btn-primary btn-margin"}
-                       "Home") 
-                  (tag "button" {:id "btn-login"
-                                 :class "btn btn-primary btn-margin"}
-                       "Login") 
-                  (tag "button" {:id "btn-logout"
-                                 :class "btn btn-primary btn-margin"}
-                       "Logout")
-                  (tag "p" {:id "logout-status" :class "navbar-brand"} "Please login.")
-                  (tag "div" {:id "login-status" :class "navbar-brand"}
-                       (str
-                        (tag "img" {:id "user-photo" :height "42"} nil)
-                        (tag "p" {:id "login-status-text"} ""))))))))
+            (str
+             (tag "div" {:class "navbar-header"}
+                  (str
+                   (tag "a" {:class "navbar-brand"
+                             :href "#"}
+                        "2018 FIRM Reading Tracker")
+                   (tag "button" {:id "btn-home-view"
+                                  :class "btn btn-primary btn-margin"}
+                        "Home") 
+                   (tag "button" {:id "btn-login"
+                                  :class "btn btn-primary btn-margin"}
+                        "Login") 
+                   (tag "button" {:id "btn-logout"
+                                  :class "btn btn-primary btn-margin"}
+                        "Logout")
+                   (tag "p" {:id "logout-status" :class "navbar-brand"} "Please login.")
+                   (tag "div" {:id "login-status" :class "navbar-brand"}
+                        (str
+                         (tag "img" {:id "user-photo" :height "42"} nil)
+                         (tag "p" {:id "login-status-text"} "")))))))))
 
 (defn -main []
   (print
    (str
     "<!DOCTYPE" "html>\n"
-    (tag "html"
-         (str
+    (tag "html" nil
           (head)
           "\n"
           (tag "body"
                (tag "div" {:class "content"}
-                    (str
-                     (nav)
-                     (tag "main" {:class "container"}
-                          (tag "div" {:id "home-view"}
-                               (tag "div" {:id "home-content" :class "row"}
-                                    (let [books (map book books)]
-                                      (str
-                                       (tag "div" {:class "col-4" :id "summary"} (summary-content))
-                                       (tag "div" {:id "accordian" :role "tablist" :class "col-8"}
-                                            (apply str  books)))))))))))))))
+                    (nav)
+                    (tag "main" {:class "container"}
+                         (progress)
+                         (tag "div" {:id "home-view"}
+                              (tag "div" {:id "home-content" :class "row"}
+                                   (let [books (map book books)]
+                                     (str
+                                      (tag "div" {:id "accordian" :role "tablist" :class "col-12"}
+                                           (apply str  books)))))))))))))
 
 

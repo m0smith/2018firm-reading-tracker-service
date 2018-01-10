@@ -46,12 +46,17 @@ div#summary {
 }
 
 .btn-primary {
-  background: grey;
+    background: grey;
+    margin-right: 5px;
 }
 
 #login-status-text {
     color:#007bff;
     padding-left: 10px;
+}
+
+h2,h3,p {
+    color:#007bff;
 }
 
 @media (max-width: 980px) {
