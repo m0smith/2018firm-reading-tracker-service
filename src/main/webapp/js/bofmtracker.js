@@ -200,7 +200,7 @@ $(document).ready(function () {
 	} else {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
-	    // homeView.css('display', 'none');
+	    homeView.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    logoutStatus.css('display', 'inline-block');
 	    loginStatus.css('display', 'none');
