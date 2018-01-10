@@ -19,7 +19,6 @@ var readChapters = function() {
         success: function(response){
         	
             response.forEach(function(data) {
-        	console.log(data);
         	$("#" + data).prop('checked', true);
             })
 	    summarize();
@@ -31,10 +30,6 @@ var summarize = function() {
     var cboxes = $('input[type=checkbox]:checked').length;
     var days = daysUntil(2018,7,1);
     var remaining = (boxes - cboxes);
-    console.log(this.checked);
-    console.log(this.id);
-    console.log(boxes)
-    console.log(cboxes)
     
     $('#days').text(days);
     $('#read').text(cboxes);
@@ -111,6 +106,27 @@ $(document).ready(function () {
 
     logoutBtn.click(logout);
 
+    var userProfile;
+
+    function getProfile() {
+	if (!userProfile) {
+	    var accessToken = localStorage.getItem('access_token');
+	    
+	    if (!accessToken) {
+		console.log('Access token must exist to fetch profile');
+	    }
+	    
+	    webAuth.client.userInfo(accessToken, function(err, profile) {
+		if (profile) {
+		    userProfile = profile;
+		    console.log(profile);
+		}
+	    });
+	} else {
+	    console.log(profile);
+	}
+    }
+
     function setSession(authResult) {
 	// Set the time that the access token will expire at
 	var expiresAt = JSON.stringify(
@@ -140,7 +156,7 @@ $(document).ready(function () {
 	webAuth.parseHash(function(err, authResult) {
 	    if (authResult && authResult.accessToken && authResult.idToken) {
 		window.location.hash = '';
-		console.log(authResult);
+		getProfile();
 		setSession(authResult);
 		loginBtn.css('display', 'none');
 		homeView.css('display', 'inline-block');
