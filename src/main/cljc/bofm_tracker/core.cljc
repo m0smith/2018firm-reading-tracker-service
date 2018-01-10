@@ -52,7 +52,7 @@
   (let [id (str (:url-id b) "-p" num)]
     (tag "label" {:class "btn btn-primary" :for id}
          (str
-          (tag "input" {:autocomplete "off" :type "checkbox"
+          (tag "input" {:autocomplete "off" :type "checkbox" :class "chapter-cb"
                         :id id} nil)
           (str " " num)))))
   

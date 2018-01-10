@@ -39,7 +39,7 @@ var summarize = function() {
     $('#percent').text(p.toFixed(2));
 }
 
-$(document).on("click", "input[type='checkbox']", function () {
+$(".chapter-cb").on("click", function () {
     summarize();
 
     if(this.checked) {
