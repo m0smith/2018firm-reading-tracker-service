@@ -41,7 +41,7 @@ div#summary {
 	       
 }
 
-#login-status {
+#login-status, #logout-status {
     padding-left: 10px;
 }
 

@@ -176,8 +176,8 @@ $(document).ready(function () {
 	    loginBtn.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    logoutBtn.css('display', 'inline-block');
-	    logoutStatus.css('display', 'inline-block');
-	    loginStatus.css('display', 'none');
+	    loginStatus.css('display', 'inline-block');
+	    logoutStatus.css('display', 'none');
 	} else {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
