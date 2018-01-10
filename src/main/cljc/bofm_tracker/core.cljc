@@ -50,18 +50,17 @@
 
 (defn chapter [b num]
   (let [id (str (:url-id b) "-p" num)]
-    (tag "label" {:class "checkbox-inline" :for id}
+    (tag "label" {:class "btn btn-primary" :for id}
          (str
-          (tag "input" {:class "checkbox"
-                        :type "checkbox"
-                        :value ""
+          (tag "input" {:autocomplete "off"
                         :id id} nil)
-          num))))
+          (str " " num)))))
   
   
   
 (defn chapters [b]
-  (apply str (map #(chapter b (inc %)) (range (:chapters b)))))
+  (tag "div" {:class "btn-group" :data-toggle "buttons"}
+       (apply str (map #(chapter b (inc %)) (range (:chapters b))))))
 
 (defn book [b]
   (let [head-id (str "head" (:url-id b))
