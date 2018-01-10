@@ -85,7 +85,8 @@ $(document).ready(function () {
 
     readChapters();
     
-    var loginStatus = $('#login-status');
+    var loginStatus = $('#login-status-text');
+    var logoutStatus = $('#logout-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
     
@@ -174,13 +175,16 @@ $(document).ready(function () {
 	    loginBtn.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    logoutBtn.css('display', 'inline-block');
-	    loginStatus.text('You are logged in!');
+	    logoutStatus.css('display', 'inline-block');
+	    loginStatus.css('display', 'none');
+	    loginStatus.text(localStorage.getItem['profile'].name);
 	} else {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
 	    homeView.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
-	    loginStatus.text('You are not logged in! Please log in to continue.');
+	    logoutStatus.css('display', 'inline-block');
+	    loginStatus.css('display', 'none');
 	}
     }
 
