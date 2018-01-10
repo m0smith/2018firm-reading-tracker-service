@@ -79,7 +79,7 @@ class HelloController {
 		       @RequestParam("chapter") String chapter) {
 	UserChapters uc = new UserChapters();
 	uc.setChapter(chapter);
-	uc.setUserInfoId(user.getName());
+	uc.setUserId(user.getName());
 	userChaptersRepository.save(uc);
 	return "Saved " + chapter;
 	
@@ -89,7 +89,7 @@ class HelloController {
     void chapterNotRead(@PathVariable("chapter") String chapter,
 			@AuthenticationPrincipal Principal user) {
 	logger.error("chapterNotRead: " + chapter);
-	Long rtnval = userChaptersRepository.deleteByChapterAndUserInfoId(chapter, user.getName());
+	Long rtnval = userChaptersRepository.deleteByChapterAndUserId(chapter, user.getName());
 	logger.error("Delete count:" + rtnval);
 
 	

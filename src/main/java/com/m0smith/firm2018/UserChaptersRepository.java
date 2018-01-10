@@ -13,7 +13,7 @@ import com.m0smith.firm2018.UserChapters;
 public interface UserChaptersRepository extends CrudRepository<UserChapters, Long> {
 
     @Transactional
-    Long deleteByChapterAndUserInfoId(String chapter, String id);
+    Long deleteByChapterAndUserId(String chapter, String id);
 
     @Transactional
     List<UserChapters> findByUserInfoId(String id);

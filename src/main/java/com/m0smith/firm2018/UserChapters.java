@@ -11,7 +11,7 @@ public class UserChapters {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer user_chapters_id;
 
-    private String userInfoId;
+    private String userId;
 
     private String chapter;
 
@@ -25,12 +25,12 @@ public class UserChapters {
 
 	}
 
-    	public String getUserInfoId() {
-		return userInfoId;
+    	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserInfoId(String id) {
-		this.userInfoId = id;
+	public void setUserId(String id) {
+		this.userId = id;
 	}
 
 	public String getChapter() {
