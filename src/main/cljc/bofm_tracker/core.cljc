@@ -127,7 +127,8 @@
                        "Login") 
                   (tag "button" {:id "btn-logout"
                                  :class "btn btn-primary btn-margin"}
-                       "Logout"))))))
+                       "Logout")
+                  (tag "p" {:id "login-status" :class "navbar-brand"} ""))))))
 
 (defn -main []
   (print

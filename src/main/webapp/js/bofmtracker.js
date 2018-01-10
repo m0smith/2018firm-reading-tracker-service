@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     readChapters();
     
-    var loginStatus = $('#home-content');
+    var loginStatus = $('#login-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
     
