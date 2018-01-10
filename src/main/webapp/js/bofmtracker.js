@@ -6,16 +6,25 @@ function daysUntil(year, month, day) {
   return Math.round(days);
 }
 
+var apiHeaders = function() {
+    var accessToken = localStorage.getItem('access_token');
+
+    var headers;
+    if (secured && accessToken) {
+	headers = { Authorization: 'Bearer ' + accessToken };
+    }
+    return headers;
+}
+
 var readChapters = function() {
     $.ajax({
         url: "/read",
         type: "GET",
         datatype:"JSON",
         contentType: "application/json",
-      
+	headers: apiHeaders()
          
-        error : function(data){console.log("error:",data)
-    },
+        error : function(data){ console.log("error:",data) },
         success: function(response){
         	
             response.forEach(function(data) {
@@ -45,7 +54,6 @@ var summarize = function() {
     $('#personal-progress-bar span').text(p_display);
     $('#personal-progress-bar').attr('aria-valuenow', p_display).css('width',p_display);
 }
-
 
 
 // $("").on("click", function () {
@@ -116,9 +124,9 @@ $(document).ready(function () {
 	domain: '2018firm.auth0.com',
 	clientID: 'S2peKq6xxBILjv2vu4LPRXR0WywJKm1M',
 	redirectUri: 'http://openshift-jee-sample-2018firm.7e14.starter-us-west-2.openshiftapps.com',
-	audience: 'https://' + '2018firm.auth0.com' + '/userinfo',
+	audience: 'http://reading.2018firm.life',
 	responseType: 'token id_token',
-	scope: 'openid profile'
+	scope: 'openid profile read:chapter write:chapter read:user write:user'
     });
     
     var loginBtn = $('#btn-login');
@@ -128,8 +136,6 @@ $(document).ready(function () {
 	webAuth.authorize();
     });
 
-    readChapters();
-    
     var loginStatus = $('#login-status');
     var loginStatusText = $('#login-status-text');
     var logoutStatus = $('#logout-status');
@@ -224,6 +230,7 @@ $(document).ready(function () {
 
     function displayButtons() {
 	if (isAuthenticated()) {
+	    readChapters();
 	    loginBtn.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    homeView.css('display', 'inline-block');
