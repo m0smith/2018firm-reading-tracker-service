@@ -19,10 +19,15 @@
    {:name "Moroni" :chapters 10 :url-id "moro"}
    ])
 
-  
+
+(defn attr [[k v]]
+  (if v
+    (str (name k) "=\"" v "\"")
+    (name k)))
+
 (defn join-map [m]
   (if m
-    (apply str " " (interpose " " (map (fn [[k v]] (str (name k) "=\"" v "\"")) m)))
+    (apply str " " (interpose " " (map attr m)))
     ""))
 
 (defn link-tag
@@ -47,7 +52,9 @@
   ([name  body] (tag name nil body))
   ([name attrs body] (tag-body name attrs body))
   ([name attrs b1 b2] (tag-body name attrs (str b1 b2)))
-  ([name attrs b1 b2 b3] (tag-body name attrs (str b1 b2 b3))))
+  ([name attrs b1 b2 b3] (tag-body name attrs (str b1 b2 b3)))
+  ([name attrs b1 b2 b3 b4] (tag-body name attrs (str b1 b2 b3 b4)))
+  ([name attrs b1 b2 b3 b4 b5] (tag-body name attrs (str b1 b2 b3 b4 b5))))
 
 (defn chapter [b num]
   (let [id (str (:url-id b) "-p" num)]
@@ -122,6 +129,35 @@
                         :aria-valuemax "239" :style "width:0%"}
                  "<span>0%</span>"))))
 
+(defn registration-item [id desc class]
+  (let [i (str "attendee-group-" id)]
+    (tag "label" {:class "btn btn-primary" :for i}
+         (tag "input" {:type "radio" :name "user_type" :class (str "attendee-group-cb attendee-group-"
+                                                                        class)
+                       :id i :value id} nil)
+       desc)))
+
+(defn ward-option [name]
+  (tag "option" {} name))
+
+(defn registration []
+  (let [ids ["youth", "leader", "other", "none"]
+        classes ["youth", "non-youth", "non-youth", "non-youth"]
+        wards ["2nd","3rd","4th","5th","6th","9th","10th","Mount Ensign"]
+        descs ["a youth", "a leader", "other", "not attending"]]
+    (tag "div" {:class "container" :id "registration-view"}
+         (tag "form" {:class "form" :id "registration-form" :data-toggle "buttons"}
+              (tag "h3" {} "I am attending 2018 FIRM as")
+              (tag "div" {:class "btng" :data-toggle "buttons"}
+                   (apply str (map registration-item ids descs classes)))
+              (tag "div" {:class "form-group" :id "ward-select-view"}
+                   (tag "h3" {:for "select-ward"} "Select your ward:")
+                   (tag "select" {:class "form-control" :id "select-ward" :name "ward"}
+                        (apply str (map ward-option wards))))
+              (tag "div" {}
+                   (tag "button" {:id "registration-submit" :disabled nil
+                                  :class "disabled btn" :type "button"} "Complete"))))))
+                   
 
 (defn nav []
   (tag "nav" {:class "navbar navbar-default"}
@@ -157,6 +193,7 @@
           (tag "body"
                (tag "div" {:class "content"}
                     (nav)
+                    (registration)
                     (tag "main" {:class "container"}
                          (progress)
                          (tag "div" {:id "home-view"}

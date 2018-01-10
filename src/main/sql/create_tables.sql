@@ -1,6 +1,8 @@
 CREATE TABLE user_info (
-       user_info_id VARCHAR(20),
-       ward VARCHAR(20)
+       user_info_id int NOT NULL AUTO_INCREMENT,
+       user_id VARCHAR(30),
+       ward VARCHAR(20),
+       user_type VARCHAR(10)
 );
 
 

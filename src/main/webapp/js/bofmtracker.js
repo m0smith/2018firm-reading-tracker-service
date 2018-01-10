@@ -56,8 +56,35 @@ var summarize = function() {
 
 //      })});
 
+
+var submitRegistration = function(){
+    console.log("POST");
+
+    $("#registration-view").css('display', 'none');
+    console.log($("#registration-form").serialize());
+    $.post("/reg", $("#registration-form").serialize(), function(data){
+	console.log("POST");
+	alert(data);
+    });
+}
+
 $(document).ready(function () {
 
+    $('#attendee-group-youth').change( function(ele) {
+	console.log("YOUTH");
+	$("#ward-select-view").css('display', 'inline-block');
+	$("#registration-submit").removeAttr("disabled").removeClass("disabled").addClass("btn-success");
+    });
+    $('.attendee-group-non-youth').change( function(ele) {
+	console.log("NON YOUTH");
+	$("#ward-select-view").css('display', 'none');
+	$("#registration-submit").removeAttr("disabled").removeClass("disabled").addClass("btn-success");
+    });
+
+    $('#registration-submit').on('click', function() {
+	submitRegistration();
+    });
+    
     $('.chapter-cb').change( function(ele) {
 	console.log(this.checked);
 	summarize();

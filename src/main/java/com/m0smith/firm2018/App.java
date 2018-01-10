@@ -53,6 +53,17 @@ class HelloController {
 	
     }
     
+    @RequestMapping(method = RequestMethod.POST, value="/reg")
+    String register(@RequestParam("ward") String ward,
+		    @RequestParam("user_type") String user_type
+		    ) {
+	UserInfo ui = new UserInfo();
+	ui.setWard(ward);
+	ui.setUserType(user_type);
+	userInfoRepository.save(ui);
+	return "Saved " + user_type;
+	
+    }
     @RequestMapping(method = RequestMethod.PUT, value="/read")
     String chapterRead(@RequestParam("chapter") String chapter) {
 	UserChapters uc = new UserChapters();
