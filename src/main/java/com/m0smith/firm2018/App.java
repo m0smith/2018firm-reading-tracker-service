@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 import com.m0smith.firm2018.UserInfo;
 import com.m0smith.firm2018.UserInfoRepository;
@@ -23,6 +25,10 @@ import org.slf4j.LoggerFactory;
 
 
 @SpringBootApplication
+@PropertySources({
+		@PropertySource("classpath:application.properties"),
+		@PropertySource("classpath:auth0.properties")
+})
 public class App extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

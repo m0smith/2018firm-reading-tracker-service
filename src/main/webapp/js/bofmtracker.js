@@ -125,7 +125,7 @@ $(document).ready(function () {
     
     loginBtn.click(function(e) {
 	e.preventDefault();
-    webAuth.authorize();
+	webAuth.authorize();
     });
 
     readChapters();
@@ -136,6 +136,7 @@ $(document).ready(function () {
     var loginView = $('#login-view');
     var homeView = $('#home-view');
     var summaryView = $('#summary-view');
+    var registrationView = $('#registration-view');
     var userPhoto = $( '#user-photo' );
     
     // buttons and event listeners
@@ -200,6 +201,7 @@ $(document).ready(function () {
 	var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
 	return new Date().getTime() < expiresAt;
     }
+
     
     function handleAuthentication() {
 	webAuth.parseHash(function(err, authResult) {
