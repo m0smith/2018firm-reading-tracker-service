@@ -98,7 +98,7 @@ class HelloController {
     @RequestMapping(path="/read")
     public @ResponseBody Iterable<String> getReadChapters(@AuthenticationPrincipal Principal user) {
 	List<String> rtnval = new ArrayList<String>();
-	for( UserChapters uc :userChaptersRepository.findByUserInfoId(user.getName())) {
+	for( UserChapters uc :userChaptersRepository.findByUserId(user.getName())) {
 	    rtnval.add(uc.getChapter());
 	}
 	return rtnval;
