@@ -52,7 +52,7 @@
   (let [id (str (:url-id b) "-p" num)]
     (tag "label" {:class "btn btn-primary" :for id}
          (str
-          (tag "input" {:autocomplete "off"
+          (tag "input" {:autocomplete "off" :type "checkbox"
                         :id id} nil)
           (str " " num)))))
   
@@ -98,9 +98,7 @@
        (str
         (tag "title" "2018 FIRM Reading Tracker")
         (link-tag "meta" {:charset "UTF-8"} nil)
-        (link-tag "link" {:rel "stylesheet"
-                          :href "css/bofmtracker.css"}
-                  nil)
+
         (link-tag "link" {:rel "stylesheet"
                           :href "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"}
                   nil)
@@ -108,7 +106,10 @@
         (tag "script" {:src "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"} "")
         (tag "script" {:src "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"} "")
         (tag "script" {:src "https://cdn.auth0.com/js/auth0/9.0.1/auth0.min.js"} "")
-        (tag "script" {:src "js/bofmtracker.js"} ""))))
+        (tag "script" {:src "js/bofmtracker.js"} "")
+        (link-tag "link" {:rel "stylesheet"
+                          :href "css/bofmtracker.css"}
+                  nil))))
 
 (defn nav []
   (tag "nav" {:class "navbar navbar-default"}
