@@ -224,8 +224,9 @@ $(document).ready(function () {
 	    headers: apiHeaders(true),
 	    success: function(data) {
 		console.log('REG read: ' + data);
-
-		if( data != 'true'){
+		console.log(data == true);
+		if( data != true){
+		    logoutStatus.css('display', 'none');
 		    registrationView.css('display', 'inline-block');
 		} else {
 		    displayButtons();
