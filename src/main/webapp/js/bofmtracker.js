@@ -181,7 +181,7 @@ $(document).ready(function () {
 		if (profile) {
 		    console.log(profile);
 		    localStorage.setItem('profile', profile);
-		    loginStatusText.text(profile.name);
+		    logoutStatusText.text(profile.name);
 		    userPhoto.attr('src', profile.picture);
 		}
 	    });
