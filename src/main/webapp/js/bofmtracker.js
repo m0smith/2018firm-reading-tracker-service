@@ -145,7 +145,7 @@ $(document).ready(function () {
     });
 
     var loginStatus = $('#login-status');
-    var loginStatusText = $('#login-status-text');
+    var logoutStatusText = $('#logout-status-text');
     var logoutStatus = $('#logout-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
