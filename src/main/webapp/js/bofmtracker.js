@@ -209,7 +209,8 @@ $(document).ready(function () {
 	loginBtn.css('display', 'inline-block');
 	logoutBtn.css('display', 'none');	
 	loginStatus.css('display', 'inline-block');
-	logoutStatus.css('display', 'none');	
+	logoutStatus.css('display', 'none');
+	displayButtons();
     }
 
     function isAuthenticated() {
