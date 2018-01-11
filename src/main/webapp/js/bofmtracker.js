@@ -65,22 +65,6 @@ var summarize = function() {
 //      })});
 
 
-var submitRegistration = function(){
-    console.log("POST");
-
-    $("#registration-view").css('display', 'none');
-    console.log($("#registration-form").serialize());
-    $.ajax({
-	url: '/reg',
-	type: 'POST',
-	contentType : 'application/x-www-form-urlencoded',
-	data: $("#registration-form").serialize(),
-	headers: apiHeaders(true),
-	success: function(data) {
-	    console.log('POST was performed for ' + this + '.');
-	}
-    });
-}
 
 $(document).ready(function () {
 
@@ -169,6 +153,26 @@ $(document).ready(function () {
     });
 
     logoutBtn.click(logout);
+    
+    var submitRegistration = function(){
+	console.log("POST");
+	
+	$("#registration-view").css('display', 'none');
+	console.log($("#registration-form").serialize());
+	$.ajax({
+	    url: '/reg',
+	    type: 'POST',
+	    contentType : 'application/x-www-form-urlencoded',
+	    data: $("#registration-form").serialize(),
+	    headers: apiHeaders(true),
+	    success: function(data) {
+		console.log('POST was performed for ' + this + '.');
+		registrationView.css('display', 'none');
+		displayButtons();
+	    }
+	});
+}
+
 
     function getProfile(accessToken) {
 	if (!localStorage.getItem['profile']) {
