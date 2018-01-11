@@ -206,7 +206,10 @@ $(document).ready(function () {
 	localStorage.removeItem('id_token');
 	localStorage.removeItem('expires_at');
 	localStorage.removeItem('profile');
-	displayButtons();
+	loginBtn.css('display', 'inline-block');
+	logoutBtn.css('display', 'none');	
+	loginStatus.css('display', 'inline-block');
+	logoutStatus.css('display', 'none');	
     }
 
     function isAuthenticated() {
@@ -281,8 +284,8 @@ $(document).ready(function () {
 	    homeView.css('display', 'none');
 	    summaryView.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
-	    logoutStatus.css('display', 'inline-block');
-	    loginStatus.css('display', 'none');
+	    loginStatus.css('display', 'inline-block');
+	    logoutStatus.css('display', 'none');
 	}
     }
 
