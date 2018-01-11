@@ -196,7 +196,7 @@
                     (registration)
                     (tag "main" {:class "container"}
                          (progress)
-                         (tag "div" {:id "home-view"}
+                         (tag "div" {:id "home-view" :class "container"}
                               (tag "div" {:id "home-content" :class "row"}
                                    (let [books (map book books)]
                                      (str
