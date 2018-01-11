@@ -243,6 +243,11 @@ $(document).ready(function () {
 		getProfile(authResult.accessToken);
 		setSession(authResult);
 		loginBtn.css('display', 'none');
+		logoutBtn.css('display', 'inline-block');
+		loginStatus.css('display', 'none');
+		logoutStatus.css('display', 'inline-block');
+		summaryView.css('display', 'inline-block');
+		readChapters();
 		lookForRegistration();
 	    } else if (err) {
 		homeView.css('display', 'inline-block');
@@ -258,12 +263,12 @@ $(document).ready(function () {
 
     function displayButtons() {
 	if (isAuthenticated()) {
-	    readChapters();
 	    loginBtn.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
 	    homeView.css('display', 'inline-block');
 	    summaryView.css('display', 'inline-block');
-	    logoutBtn.css('display', 'inline-block');
+	    logoutBtn.css('display', 'none');
+	    loginBtn.css('display', 'inline-block');
 	    loginStatus.css('display', 'inline-block');
 	    logoutStatus.css('display', 'none');
 	} else {
@@ -277,6 +282,17 @@ $(document).ready(function () {
 	}
     }
 
-    handleAuthentication();
-
+    function startup() {
+	loginBtn.css('display', 'none');
+	logoutBtn.css('display', 'none');
+	homeView.css('display', 'none');
+	summaryView.css('display', 'none');
+	homeViewBtn.css('display', 'none');
+	logoutStatus.css('display', 'none');
+	loginStatus.css('display', 'none');
+	
+	handleAuthentication();
+    }
+    
+    startup();
 });
