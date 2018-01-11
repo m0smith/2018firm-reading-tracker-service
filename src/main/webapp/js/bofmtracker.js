@@ -224,6 +224,13 @@ $(document).ready(function () {
 	    headers: apiHeaders(true),
 	    success: function(data) {
 		console.log('REG read: ' + data);
+
+		if( data != 'true'){
+		    registrationView.css('display', 'inline-block');
+		} else {
+		    displayButtons();
+		}
+
 	    }
 	});
     }
@@ -234,17 +241,17 @@ $(document).ready(function () {
 		window.location.hash = '';
 		getProfile(authResult.accessToken);
 		setSession(authResult);
-		lookForRegistration();
 		loginBtn.css('display', 'none');
-		homeView.css('display', 'inline-block');
+		lookForRegistration();
 	    } else if (err) {
 		homeView.css('display', 'inline-block');
 		console.log(err);
 		alert(
 		    'Error: ' + err.error + '. Check the console for further details.'
 		);
+		displayButtons();
+		
 	    }
-	    displayButtons();
 	});
     }
 

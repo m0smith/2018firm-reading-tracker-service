@@ -41,7 +41,7 @@ div#summary {
 	       
 }
 
-#ward-select-view {
+#ward-select-view , #home-view, #registration-view {
     display: none;
 }
 
