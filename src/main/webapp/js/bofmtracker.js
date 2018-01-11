@@ -257,7 +257,11 @@ $(document).ready(function () {
 		);
 		displayButtons();
 		
+	    } else {
+		loginBtn.css('display', 'inline-block');
+		loginStatus.css('display', 'inline-block');
 	    }
+		
 	});
     }
 
@@ -267,10 +271,10 @@ $(document).ready(function () {
 	    homeViewBtn.css('display', 'none');
 	    homeView.css('display', 'inline-block');
 	    summaryView.css('display', 'inline-block');
-	    logoutBtn.css('display', 'none');
-	    loginBtn.css('display', 'inline-block');
-	    loginStatus.css('display', 'inline-block');
-	    logoutStatus.css('display', 'none');
+	    logoutBtn.css('display', 'inline-block');
+	    loginBtn.css('display', 'none');
+	    loginStatus.css('display', 'none');
+	    logoutStatus.css('display', 'inline-block');
 	} else {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
