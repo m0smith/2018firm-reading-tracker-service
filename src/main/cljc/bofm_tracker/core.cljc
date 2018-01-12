@@ -186,7 +186,7 @@
 (defn -main []
   (print
    (str
-    "<!DOCTYPE" "html>\n"
+    "<!DOCTYPE html>\n"
     (tag "html" nil
           (head)
           "\n"
