@@ -105,6 +105,8 @@
        (str
         (tag "title" "2018 FIRM Reading Tracker")
         (link-tag "meta" {:charset "UTF-8"} nil)
+        (link-tag "link" {:rel "shortcut icon" :href "favicon.ico"
+                          :type "image/x-icon"} nil)
 
         (link-tag "link" {:rel "stylesheet"
                           :href "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"}

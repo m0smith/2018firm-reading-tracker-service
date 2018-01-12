@@ -1,7 +1,11 @@
 * Book of Mormon Reading Tracker
 ** Overview
+** Requirements
+- 
 ** Building
 To build this repository with maven you must specify "-Popenshift", eg "mvn clean package -Popenshift"
+
+The HTMl is creating by running make.  The source is in src/main/cljc/bofm_tracker/core.cljc
 ** Installation
 *** OpenShift
 *** Auth0
