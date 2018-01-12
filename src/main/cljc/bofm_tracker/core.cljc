@@ -169,13 +169,13 @@
                              :href "#"}
                         "2018 FIRM Reading Tracker")
                    (tag "button" {:id "btn-home-view"
-                                  :class "btn btn-primary btn-margin"}
+                                  :class "btn btn-primary btn-margin btn-xlarge"}
                         "Home") 
                    (tag "button" {:id "btn-login"
-                                  :class "btn btn-primary btn-margin"}
+                                  :class "btn btn-primary btn-margin btn-xlarge"}
                         "Login") 
                    (tag "button" {:id "btn-logout"
-                                  :class "btn btn-primary btn-margin"}
+                                  :class "btn btn-primary btn-margin btn-xlarge"}
                         "Logout")
                    (tag "p" {:id "login-status" :class "navbar-brand"} "Please login.")
                    (tag "div" {:id "logout-status" :class "navbar-brand"}
