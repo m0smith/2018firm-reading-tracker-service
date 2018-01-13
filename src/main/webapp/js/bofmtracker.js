@@ -64,7 +64,6 @@ var currentTally = function() {
 };
 
 var summarize = function() {
-    console.log("summarize")
     var boxes = $('input[type=checkbox]').length;
     var cboxes = $('input[type=checkbox]:checked').length;
     var days = daysUntil(2018,7,1);
@@ -96,12 +95,10 @@ var summarize = function() {
 $(document).ready(function () {
 
     $('#attendee-group-youth').change( function(ele) {
-	console.log("YOUTH");
 	$("#ward-select-view").css('display', 'inline-block');
 	$("#registration-submit").removeAttr("disabled").removeClass("disabled").addClass("btn-success");
     });
     $('.attendee-group-non-youth').change( function(ele) {
-	console.log("NON YOUTH");
 	$("#ward-select-view").css('display', 'none');
 	$("#registration-submit").removeAttr("disabled").removeClass("disabled").addClass("btn-success");
     });
@@ -111,7 +108,6 @@ $(document).ready(function () {
     });
     
     $('.chapter-cb').change( function(ele) {
-	console.log(this.checked);
 	summarize();
 
 	if(this.checked) {
@@ -173,14 +169,18 @@ $(document).ready(function () {
     
     homeViewBtn.click(function() {
 	homeView.css('display', 'inline-block');
+	summaryView.css('display', 'inline-block');
+	tallyViewBtn.css('display', 'inline-block');
 	tallyView.css('display', 'none');
 	loginView.css('display', 'none');
     });
 
     tallyViewBtn.click(function() {
 	tallyView.css('display', 'inline-block');
-	homeView.css('display', 'none');
+	homeViewBtn.css('display', 'inline-block');
 	loginView.css('display', 'none');
+	summaryView.css('display', 'none');
+	homeView.css('display', 'none');
     });
 
     loginBtn.click(function(e) {
@@ -191,10 +191,8 @@ $(document).ready(function () {
     logoutBtn.click(logout);
     
     var submitRegistration = function(){
-	console.log("POST");
 	
 	$("#registration-view").css('display', 'none');
-	console.log($("#registration-form").serialize());
 	$.ajax({
 	    url: '/reg',
 	    type: 'POST',
@@ -202,7 +200,6 @@ $(document).ready(function () {
 	    data: $("#registration-form").serialize(),
 	    headers: apiHeaders(true),
 	    success: function(data) {
-		console.log('POST was performed for ' + this + '.');
 		registrationView.css('display', 'none');
 		displayButtons();
 	    }
@@ -219,7 +216,6 @@ $(document).ready(function () {
 	    
 	    webAuth.client.userInfo(accessToken, function(err, profile) {
 		if (profile) {
-		    console.log(profile);
 		    localStorage.setItem('profile', profile);
 		    logoutStatusText.text(profile.name);
 		    userPhoto.attr('src', profile.picture);
@@ -267,8 +263,6 @@ $(document).ready(function () {
 	    data: "chapter=" + this.id,
 	    headers: apiHeaders(true),
 	    success: function(data) {
-		console.log('REG read: ' + data);
-		console.log(data == true);
 		if( data != true){
 		    logoutStatus.css('display', 'none');
 		    registrationView.css('display', 'inline-block');
