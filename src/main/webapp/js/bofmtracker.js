@@ -24,10 +24,10 @@ var readChapters = function() {
         contentType: "application/json",
 	headers: apiHeaders(true),
          
-        error : function(data){
+        error: function(data){
 	    console.log("error:",data);
 	    $('#error-view').text("Failed to load your read chapters.  Please try again later.");
-	}
+	},
         success: function(response){
         	
             response.forEach(function(data) {
