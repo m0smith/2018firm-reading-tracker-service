@@ -24,11 +24,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 	    .forRS256(apiAudience, issuer)
 	    .configure(http)
 	    .authorizeRequests()
-	    .antMatchers(HttpMethod.GET, "/", "/*.html","/css/*.css","/js/*.js","/tally",
+	    .antMatchers(HttpMethod.GET, "/", "/*.html","/css/*.css","/js/*.js",
 			 "/image/*","/favicon.ico").permitAll()
 	    .antMatchers(HttpMethod.GET, "/reg/**").hasAuthority("read:user")
 	    .antMatchers(HttpMethod.POST, "/reg/**").hasAuthority("write:user")
-	    .antMatchers(HttpMethod.GET, "/read/**").hasAuthority("read:chapter")
+	    .antMatchers(HttpMethod.GET, "/read/**", "/tally").hasAuthority("read:chapter")
 	    .antMatchers(HttpMethod.PUT, "/read/**").hasAuthority("write:chapter")
 	    .antMatchers(HttpMethod.DELETE, "/read/**").hasAuthority("write:chapter")
 	    .anyRequest().authenticated();
