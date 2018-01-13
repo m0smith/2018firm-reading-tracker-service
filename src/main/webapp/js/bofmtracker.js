@@ -24,7 +24,10 @@ var readChapters = function() {
         contentType: "application/json",
 	headers: apiHeaders(true),
          
-        error : function(data){ console.log("error:",data) },
+        error : function(data){
+	    console.log("error:",data);
+	    $('#error-view').text("Failed to load your read chapters.  Please try again later.");
+	}
         success: function(response){
         	
             response.forEach(function(data) {
@@ -45,7 +48,10 @@ var currentTally = function() {
         contentType: "application/json",
 	headers: apiHeaders(true),
         
-        error : function(data){ console.log("error:",data) },
+        error : function(data){
+	    console.log("error:",data)
+	    $('#error-view').text("Stake tally not loaded");
+	},
         success: function(response){
             
             response.forEach(function(data) {
@@ -118,6 +124,9 @@ $(document).ready(function () {
 		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('PUT was performed.' + data);
+		},
+		error: function(data) {
+		    $('#error-view').text("Mark not saved.  Please try again later.");
 		}
 	    });
 	} else {
@@ -127,6 +136,9 @@ $(document).ready(function () {
 		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('DELETE was performed for ' + this.id + '.');
+		},
+		error: function(data) {
+		    $('#error-view').text("Mark not removed.  Please try again later.");
 		}
 	    });
 	}});
@@ -290,10 +302,8 @@ $(document).ready(function () {
 		lookForRegistration();
 	    } else if (err) {
 		homeView.css('display', 'inline-block');
+		$('#error-view').text("Login error:" + err + " Please try again later.");
 		console.log(err);
-		alert(
-		    'Error: ' + err.error + '. Check the console for further details.'
-		);
 		displayButtons();
 		
 	    } else {
