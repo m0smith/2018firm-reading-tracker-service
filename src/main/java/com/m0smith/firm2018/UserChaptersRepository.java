@@ -19,7 +19,7 @@ public interface UserChaptersRepository extends CrudRepository<UserChapters, Lon
     @Transactional
     List<UserChapters> findByUserId(String id);
 
-    @Query(value="select c.user_id, c.chapter, i.ward from  (select user_id, count(chapter) as chapter from user_chapters group by user_id) c INNER JOIN (select ward, user_id from user_info) i WHERE i.user_id = c.user_id;", nativeQuery = true)
+    @Query(value="select i.ward, count(c.chapter) from (select user_id, chapter from user_chapters) c inner join (select user_id, ward from user_info where user_type = 'youth') i WHERE i.user_id = c.user_id group by i.ward", nativeQuery = true)
     public List<?> findTally();
 
 }
