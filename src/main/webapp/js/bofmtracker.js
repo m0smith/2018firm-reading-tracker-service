@@ -34,8 +34,35 @@ var readChapters = function() {
             })
 	    summarize();
       }	
-})
+    })
 }
+
+var currentTally = function() {
+    $.ajax({
+        url: "/tally",
+        type: "GET",
+        datatype:"JSON",
+        contentType: "application/json",
+	headers: apiHeaders(true),
+        
+        error : function(data){ console.log("error:",data) },
+        success: function(response){
+            
+            response.forEach(function(data) {
+		var ward = data[0];
+		var user_count = data[1];
+		var total_chapters_read = data[2];
+
+		var p = total_chapters_read / (user_count * 239);
+		var p_display = p.toFixed(1) + '%';
+
+		$("#"+ward+"-progress-bar").css("width", p_display);
+		$("#"+ward+"-progress-bar span").text( p_display);
+            })
+	}	
+    })
+};
+
 var summarize = function() {
     console.log("summarize")
     var boxes = $('input[type=checkbox]').length;
@@ -256,6 +283,7 @@ $(document).ready(function () {
 		logoutStatus.css('display', 'inline-block');
 		summaryView.css('display', 'inline-block');
 		readChapters();
+		currentTally();
 		lookForRegistration();
 	    } else if (err) {
 		homeView.css('display', 'inline-block');
