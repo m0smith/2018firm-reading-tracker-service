@@ -19,6 +19,17 @@
    {:name "Moroni" :chapters 10 :url-id "moro"}
    ])
 
+(def wards
+  [
+   "2nd"
+   "3rd"
+   "4th"
+   "5th"
+   "6th"
+   "9th"
+   "10th"
+   "Mount Ensign"
+   ])
 
 (defn attr [[k v]]
   (if v
@@ -131,11 +142,12 @@
                         :aria-valuemax "239" :style "width:0%"}
                  "<span>0%</span>"))))
 
+
 (defn registration-item [id desc class]
   (let [i (str "attendee-group-" id)]
     (tag "label" {:class "btn btn-primary" :for i}
          (tag "input" {:type "radio" :name "user_type" :class (str "attendee-group-cb attendee-group-"
-                                                                        class)
+                                                                   class)
                        :id i :value id} nil)
        desc)))
 
@@ -145,7 +157,6 @@
 (defn registration []
   (let [ids ["youth", "leader", "other", "none"]
         classes ["youth", "non-youth", "non-youth", "non-youth"]
-        wards ["2nd","3rd","4th","5th","6th","9th","10th","Mount Ensign"]
         descs ["a youth", "a leader", "other", "not attending"]]
     (tag "div" {:class "container" :id "registration-view"}
          (tag "form" {:class "form" :id "registration-form" :data-toggle "buttons"}
@@ -159,8 +170,24 @@
               (tag "div" {}
                    (tag "button" {:id "registration-submit" :disabled nil
                                   :class "disabled btn" :type "button"} "Complete"))))))
-                   
 
+
+(defn ward-progress [ward]
+  (tag "div" {:class "container ward-progress-view" :id (str ward "-progress-view")}
+       (tag "h4" nil ward)
+       (tag "div" {:class "progress"}
+            (tag "div" {:id (str ward "-progress-bar") :class "progress-bar" 
+                        :role "progressbar" :aria-valuenow "0"
+                        :aria-valuemin "0"
+                        :aria-valuemax "239" :style "width:0%"}
+                 "<span>0%</span>"))))
+
+
+(defn tally-view []
+  (tag "div" {:id "tally-view" :class "container"}
+       (apply str (map ward-progress wards))))
+    
+  
 (defn nav []
   (tag "nav" {:class "navbar navbar-default"}
        (tag "div" {:class "container-fluid"}
@@ -173,6 +200,9 @@
                    (tag "button" {:id "btn-home-view"
                                   :class "btn btn-primary btn-margin btn-xlarge"}
                         "Home") 
+                   (tag "button" {:id "btn-tally-view"
+                                  :class "btn btn-primary btn-margin btn-xlarge"}
+                        "Tally") 
                    (tag "button" {:id "btn-login"
                                   :class "btn btn-primary btn-margin btn-xlarge"}
                         "Login") 
@@ -196,6 +226,7 @@
                (tag "div" {:class "content"}
                     (nav)
                     (registration)
+                    (tally-view)
                     (tag "main" {:class "container"}
                          (progress)
                          (tag "div" {:id "home-view" :class "container"}

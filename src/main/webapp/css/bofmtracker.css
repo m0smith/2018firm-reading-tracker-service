@@ -29,7 +29,7 @@ div#summary {
     filter: alpha(opacity=70); /* For IE8 and earlier */
 }
 
-.navbar, #registration-view {
+.navbar, #registration-view, #tally-view{
     opacity: 0.9;
     background-color: #ffffff;
     border: 1px solid black;
@@ -43,6 +43,10 @@ div#summary {
 
 #ward-select-view , #home-view, #registration-view , #summary-view {
     display: none;
+}
+
+.ward-progress-view {
+        color:#007bff;
 }
 
 #login-status, #logout-status {

@@ -1,7 +1,7 @@
 * Book of Mormon Reading Tracker
 ** Overview
 ** Requirements
-- 
+- P
 ** Building
 To build this repository with maven you must specify "-Popenshift", eg "mvn clean package -Popenshift"
 

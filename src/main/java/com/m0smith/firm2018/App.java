@@ -108,4 +108,9 @@ class HelloController {
 	}
 	return rtnval;
     }
+
+    @RequestMapping(path="/tally")
+    public @ResponseBody List<?> getTally(@AuthenticationPrincipal Principal user) {
+	return userChaptersRepository.findTally();
+    }
 }

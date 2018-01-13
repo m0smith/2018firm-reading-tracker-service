@@ -24,7 +24,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 	    .forRS256(apiAudience, issuer)
 	    .configure(http)
 	    .authorizeRequests()
-	    .antMatchers(HttpMethod.GET, "/", "/*.html","/css/*.css","/js/*.js",
+	    .antMatchers(HttpMethod.GET, "/", "/*.html","/css/*.css","/js/*.js","/tally",
 			 "/image/*","/favicon.ico").permitAll()
 	    .antMatchers(HttpMethod.GET, "/reg/**").hasAuthority("read:user")
 	    .antMatchers(HttpMethod.POST, "/reg/**").hasAuthority("write:user")
