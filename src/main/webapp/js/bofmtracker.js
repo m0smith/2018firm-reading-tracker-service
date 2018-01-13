@@ -53,7 +53,7 @@ var currentTally = function() {
 		var user_count = data[1];
 		var total_chapters_read = data[2];
 
-		var p = total_chapters_read / (user_count * 239);
+		var p = total_chapters_read / (user_count * 239) * 100;
 		var p_display = p.toFixed(1) + '%';
 
 		$("#"+ward+"-progress-bar").css("width", p_display);
