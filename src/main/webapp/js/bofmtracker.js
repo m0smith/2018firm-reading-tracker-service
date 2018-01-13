@@ -160,17 +160,26 @@ $(document).ready(function () {
     var logoutStatus = $('#logout-status');
     var loginView = $('#login-view');
     var homeView = $('#home-view');
+    var tallyView = $('#tally-view');
     var summaryView = $('#summary-view');
     var registrationView = $('#registration-view');
     var userPhoto = $( '#user-photo' );
     
     // buttons and event listeners
     var homeViewBtn = $('#btn-home-view');
+    var tallyViewBtn = $('#btn-tally-view');
     var loginBtn = $('#btn-login');
     var logoutBtn = $('#btn-logout');
     
     homeViewBtn.click(function() {
 	homeView.css('display', 'inline-block');
+	tallyView.css('display', 'none');
+	loginView.css('display', 'none');
+    });
+
+    tallyViewBtn.click(function() {
+	tallyView.css('display', 'inline-block');
+	homeView.css('display', 'none');
 	loginView.css('display', 'none');
     });
 
@@ -305,6 +314,7 @@ $(document).ready(function () {
 	if (isAuthenticated()) {
 	    loginBtn.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
+	    tallyViewBtn.css('display', 'inline-block');
 	    homeView.css('display', 'inline-block');
 	    summaryView.css('display', 'inline-block');
 	    logoutBtn.css('display', 'inline-block');
@@ -315,8 +325,10 @@ $(document).ready(function () {
 	    loginBtn.css('display', 'inline-block');
 	    logoutBtn.css('display', 'none');
 	    homeView.css('display', 'none');
+	    tallyView.css('display', 'none');
 	    summaryView.css('display', 'none');
 	    homeViewBtn.css('display', 'none');
+	    tallyViewBtn.css('display', 'none');
 	    loginStatus.css('display', 'inline-block');
 	    logoutStatus.css('display', 'none');
 	}
@@ -326,8 +338,10 @@ $(document).ready(function () {
 	loginBtn.css('display', 'none');
 	logoutBtn.css('display', 'none');
 	homeView.css('display', 'none');
+	tallyView.css('display', 'none');
 	summaryView.css('display', 'none');
 	homeViewBtn.css('display', 'none');
+	tallyViewBtn.css('display', 'none');
 	logoutStatus.css('display', 'none');
 	loginStatus.css('display', 'none');
 	
