@@ -41,12 +41,21 @@ div#summary {
 	       
 }
 
-#ward-select-view , #home-view, #registration-view , #summary-view {
+#ward-select-view , #registration-view , #summary-view {
     display: none;
+}
+
+ #home-view {
+     display: none;
+     margin-bottom: 20px;
 }
 
 .ward-progress-view {
         color:#007bff;
+}
+
+#error-view {
+    color: red;
 }
 
 #login-status, #logout-status {
