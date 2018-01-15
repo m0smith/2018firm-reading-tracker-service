@@ -213,7 +213,8 @@
                    (tag "div" {:id "logout-status" :class "navbar-brand"}
                         (str
                          (tag "img" {:id "user-photo" :height "42"} nil)
-                         (tag "p" {:id "logout-status-text"} "")))))))))
+                         (tag "p" {:id "logout-status-text"} "")))
+                   (tag "p" {:id "error-view"} "")))))))
 
 (defn -main []
   (print
