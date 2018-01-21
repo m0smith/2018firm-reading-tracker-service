@@ -41,7 +41,7 @@ div#summary {
 	       
 }
 
-label.changing, .btn-primary:not([disabled]):not(.disabled).active.mobileHoverFix, .btn-primary:not([disabled]):not(.disabled):active.mobileHoverFix, .show>.btn-primary.dropdown-toggle.mobileHoverFix {
+label.changing, .btn-primary:not([disabled]):not(.disabled).active.changing, .btn-primary:not([disabled]):not(.disabled):active.changing, .show>.btn-primary.dropdown-toggle.changing {
     background-color: orange;
 }
 
