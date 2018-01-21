@@ -125,7 +125,7 @@ $(document).ready(function () {
 		context: ev.currentTarget,
 		headers: apiHeaders(true),
 		success: function(data) {
-		    $("#"+this.id).parent().removeClass("changing").addClass("changed");
+		    $("#"+this.id).parent().removeClass("changing");
 		    console.log('PUT was performed.' + data);
 		},
 		error: function(data) {
