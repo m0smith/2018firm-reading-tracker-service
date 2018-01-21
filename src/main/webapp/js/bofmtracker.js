@@ -116,19 +116,20 @@ $(document).ready(function () {
     
     $('.chapter-cb').change( function(ele) {
 	summarize();
-	this.addClass("changing");
+	$(ele).addClass("changing");
 	if(this.checked) {
 	    $.ajax({
 		url: '/read',
 		type: 'PUT',
 		data: "chapter=" + this.id,
+		context: ele,
 		headers: apiHeaders(true),
 		success: function(data) {
-		    this.removeClass("changing").removeClass("changed");
+		    $(this).removeClass("changing").addClass("changed");
 		    console.log('PUT was performed.' + data);
 		},
 		error: function(data) {
-		    this.removeClass("changing").removeClass("failed");
+		    $(this).removeClass("changing").addClass("failed");
 		    $('#error-view').text("Mark not saved.  Please try again later.");
 		}
 	    });
@@ -136,15 +137,15 @@ $(document).ready(function () {
 	    $.ajax({
 		url: '/read/' + this.id,
 		type: 'DELETE',
-		context: this,
+		context: ele,
 		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('DELETE was performed for ' + this.id + '.');
-		    this.removeClass("changing").removeClass("changed");
+		    $(this).removeClass("changing").addClass("changed");
 
 		},
 		error: function(data) {
-		    this.removeClass("changing").removeClass("failed");
+		    $(this).removeClass("changing").addClass("failed");
 		    $('#error-view').text("Mark not removed.  Please try again later.");
 		}
 	    });
