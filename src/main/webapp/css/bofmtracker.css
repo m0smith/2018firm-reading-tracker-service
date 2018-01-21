@@ -41,6 +41,18 @@ div#summary {
 	       
 }
 
+.chapter-cb.changing, .btn-primary:not([disabled]):not(.disabled).active.mobileHoverFix, .btn-primary:not([disabled]):not(.disabled):active.mobileHoverFix, .show>.btn-primary.dropdown-toggle.mobileHoverFix {
+    background-color: orange;
+}
+
+.chapter-cb.changed: {
+    background-color: green;
+}
+
+.chapter-cb.failed: {
+    background-color: red;
+}
+
 #ward-select-view , #registration-view , #summary-view {
     display: none;
 }
