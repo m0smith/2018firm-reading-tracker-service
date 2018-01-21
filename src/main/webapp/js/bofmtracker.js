@@ -116,7 +116,7 @@ $(document).ready(function () {
     
     $('.chapter-cb').change( function(ev) {
 	summarize();
-	$(ev.currentTarget.id).addClass("changing");
+	$("#"+ev.currentTarget.id).addClass("changing");
 	if(this.checked) {
 	    $.ajax({
 		url: '/read',
@@ -125,11 +125,11 @@ $(document).ready(function () {
 		context: ev.currentTarget,
 		headers: apiHeaders(true),
 		success: function(data) {
-		    $(this.id).removeClass("changing").addClass("changed");
+		    $("#"+this.id).removeClass("changing").addClass("changed");
 		    console.log('PUT was performed.' + data);
 		},
 		error: function(data) {
-		    $(this.id).removeClass("changing").addClass("failed");
+		    $("#"+this.id).removeClass("changing").addClass("failed");
 		    $('#error-view').text("Mark not saved.  Please try again later.");
 		}
 	    });
@@ -141,11 +141,11 @@ $(document).ready(function () {
 		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('DELETE was performed for ' + this.id + '.');
-		    $(this.id).removeClass("changing").addClass("changed");
+		    $("#"+this.id).removeClass("changing").addClass("changed");
 
 		},
 		error: function(data) {
-		    $(this.id).removeClass("changing").addClass("failed");
+		    $("#"+this.id).removeClass("changing").addClass("failed");
 		    $('#error-view').text("Mark not removed.  Please try again later.");
 		}
 	    });
