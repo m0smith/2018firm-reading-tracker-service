@@ -41,15 +41,15 @@ div#summary {
 	       
 }
 
-.chapter-cb.changing, .btn-primary:not([disabled]):not(.disabled).active.mobileHoverFix, .btn-primary:not([disabled]):not(.disabled):active.mobileHoverFix, .show>.btn-primary.dropdown-toggle.mobileHoverFix {
+label.changing, .btn-primary:not([disabled]):not(.disabled).active.mobileHoverFix, .btn-primary:not([disabled]):not(.disabled):active.mobileHoverFix, .show>.btn-primary.dropdown-toggle.mobileHoverFix {
     background-color: orange;
 }
 
-.chapter-cb.changed: {
+label.changed: {
     background-color: green;
 }
 
-.chapter-cb.failed: {
+label.failed: {
     background-color: red;
 }
 
