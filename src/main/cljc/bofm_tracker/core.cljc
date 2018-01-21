@@ -69,7 +69,7 @@
 
 (defn chapter [b num]
   (let [id (str (:url-id b) "-p" num)]
-    (tag "label" {:class "btn btn-xlarge btn-primary" :for id}
+    (tag "label" {:class "btn btn-xlarge btn-primary btn-chapter" :for id}
          (str
           (tag "input" {:autocomplete "off" :type "checkbox" :class "chapter-cb"
                         :id id} nil)
@@ -145,7 +145,7 @@
 
 (defn registration-item [id desc class]
   (let [i (str "attendee-group-" id)]
-    (tag "label" {:class "btn btn-primary" :for i}
+    (tag "label" {:class "btn btn-primary btn-xlarge" :for i}
          (tag "input" {:type "radio" :name "user_type" :class (str "attendee-group-cb attendee-group-"
                                                                    class)
                        :id i :value id} nil)
