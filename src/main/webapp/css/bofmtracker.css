@@ -41,16 +41,8 @@ div#summary {
 	       
 }
 
-label.changing, .btn-primary:not([disabled]):not(.disabled).active.changing, .btn-primary:not([disabled]):not(.disabled):active.changing, .show>.btn-primary.dropdown-toggle.changing {
-    background-color: orange;
-}
-
-label.changed: {
-    background-color: green;
-}
-
-label.failed: {
-    background-color: red;
+.btn-primary:not([disabled]):not(.disabled).active.changed, .btn-primary:not([disabled]):not(.disabled):active.changed, .show>.btn-primary.dropdown-toggle.changed {
+    background-color: grey;
 }
 
 #ward-select-view , #registration-view , #summary-view {
