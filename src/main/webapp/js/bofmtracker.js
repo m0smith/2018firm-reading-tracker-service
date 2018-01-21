@@ -100,6 +100,7 @@ var summarize = function() {
 
 $(document).ready(function () {
 
+
     $('#attendee-group-youth').change( function(ele) {
 	$("#ward-select-view").css('display', 'inline-block');
 	$("#registration-submit").removeAttr("disabled").removeClass("disabled").addClass("btn-success");
@@ -115,7 +116,7 @@ $(document).ready(function () {
     
     $('.chapter-cb').change( function(ele) {
 	summarize();
-
+	this.addClass("changing");
 	if(this.checked) {
 	    $.ajax({
 		url: '/read',
@@ -123,9 +124,11 @@ $(document).ready(function () {
 		data: "chapter=" + this.id,
 		headers: apiHeaders(true),
 		success: function(data) {
+		    this.removeClass("changing").removeClass("changed");
 		    console.log('PUT was performed.' + data);
 		},
 		error: function(data) {
+		    this.removeClass("changing").removeClass("failed");
 		    $('#error-view').text("Mark not saved.  Please try again later.");
 		}
 	    });
@@ -133,11 +136,15 @@ $(document).ready(function () {
 	    $.ajax({
 		url: '/read/' + this.id,
 		type: 'DELETE',
+		context: this,
 		headers: apiHeaders(true),
 		success: function(data) {
 		    console.log('DELETE was performed for ' + this.id + '.');
+		    this.removeClass("changing").removeClass("changed");
+
 		},
 		error: function(data) {
+		    this.removeClass("changing").removeClass("failed");
 		    $('#error-view').text("Mark not removed.  Please try again later.");
 		}
 	    });
